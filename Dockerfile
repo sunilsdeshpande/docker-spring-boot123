@@ -1,21 +1,17 @@
-# For Java 8, try this
-# FROM openjdk:8-jdk-alpine
-
-# For Java 11, try this
+# Use a base image with Java 11 and Alpine Linux
 FROM adoptopenjdk/openjdk11:alpine-jre
 
-# Refer to Maven build -> finalName
-ARG JAR_FILE=target/spring-boot-web.jar
+# Install Maven and other required packages
+RUN apk update && apk add maven curl
 
-# cd /opt/app
-WORKDIR /opt/app
+# Create a directory for your application
+WORKDIR /app
 
-# cp target/spring-boot-web.jar /opt/app/app.jar
-COPY ${JAR_FILE} spring-boot-web.jar
+# Copy your Maven project files into the container
+COPY . /app
 
-# java -jar /opt/app/app.jar
-ENTRYPOINT ["java","-jar","spring-boot-web.jar"]
+# Build your Maven project inside the container
+RUN mvn clean install
 
-## sudo docker run -p 8080:8080 -t docker-spring-boot:1.0
-## sudo docker run -p 80:8080 -t docker-spring-boot:1.0
-## sudo docker run -p 443:8443 -t docker-spring-boot:1.0
+# Your entry point to run the Java application (adjust as needed)
+CMD ["java", "-jar", "target/spring-boot-web.jar"]
