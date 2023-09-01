@@ -5,10 +5,10 @@
 replicaCount: 1
 
 image:
-  repository: myacrrepo531.azurecr.io/myacrrepo531
+  repository: sunilsd1993/sunilsd
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: ""
+  tag: "6"
 
 imagePullSecrets: []
 nameOverride: ""
