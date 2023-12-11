@@ -5,10 +5,10 @@
 replicaCount: 5
 
 image:
-  repository: 211223789150.dkr.ecr.us-east-1.amazonaws.com/my-docker-repo
+  repository: sunilsd1993/s1
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: ""
+  tag: "4"
 
 imagePullSecrets: []
 nameOverride: ""
